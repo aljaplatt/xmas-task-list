@@ -1,4 +1,4 @@
-import { query } from "../db/index.js";
+import query from "../db/index.js";
 
 // All Tasks
 export const allTasks = async () => {
@@ -13,14 +13,20 @@ export const findTaskById = async (id) => {
 };
 
 // ADD TASK
-export const createTask = async (item) => {
-  const description = item.description;
-  const data = await query(
-    `INSERT INTO tasks (description) VALUES $1 RETURNING *`,
-    [description]
-  );
+// export const createTask = async (item) => {
+//   const description = item.description;
+//   const sqlString = `INSERT INTO tasks (description) VALUES $1;`;
+//   const data = await query(sqlString, [description]);
+//   return data.rows;
+// };
+
+export async function addTask(taskObj) {
+  const description = taskObj.description;
+  const sqlString = `INSERT INTO tasks (description) VALUES ($1) RETURNING *`;
+  const data = await query(sqlString, [description]);
+  console.log(data.rows);
   return data.rows;
-};
+}
 
 export const deleteTaskById = async (id) => {
   const data = await query(`DELETE FROM tasks WHERE id = $1;`, [id]);

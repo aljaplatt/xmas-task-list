@@ -3,8 +3,7 @@ import express from "express";
 import {
   allTasks,
   findTaskById,
-  createTask,
-  updateTaskById,
+  addTask,
   deleteTaskById,
 } from "../models/models.js";
 
@@ -33,15 +32,28 @@ router.get("/:id", async (req, res) => {
 });
 
 // CREATE NEW TASK
-router.post("/", async (req, res) => {
-  // take the new data from reuest body and store in var
-  const newTask = await createTask(req.body);
-  // always respond w/ obj
+// router.post("/", async (req, res) => {
+//   // take the new data from reuest body and store in var
+//   const newTask = await createTask(req.body);
+//    res.json({
+//     message: "Your task has been created.",
+//     payload: newTask,
+//   });
+// });
+
+router.post("/", async function (req, res) {
+  const newItem = req.body;
+  const data = await addTask(newItem);
   res.json({
-    message: "Your task has been created.",
-    payload: newTask,
+    success: true,
+    message: "You have successfully added a new task",
+    payload: data,
   });
 });
+// router.post('/', async (req, res) => {
+//   const {description} = req.body;
+//   const newTask = await query("INSERT INTO tasks (description) VALUES ")
+// })
 
 //UPDATE TASK BY ID
 router.put("/:id", async (req, res) => {
