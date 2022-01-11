@@ -9,12 +9,22 @@ const seinQuoteAuth = document.querySelector(".author");
 taskButton.addEventListener("click", addTask);
 taskList.addEventListener("click", deleteTask);
 
+/*===================================================================================
+                              Send user input to database
+
+=====================================================================================*/
+
 // GET USER INPUT
 const getUserInput = function (e) {
   let newTask = document.querySelector("form").value;
   console.log(`User input: ${newTask}.`);
   return newTask;
 };
+
+/* ====================================================================================
+                                  fetch database data
+                                  How to display ? - querySelector
+=====================================================================================*/
 
 const url = "http://localhost:3000";
 
