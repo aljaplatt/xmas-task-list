@@ -24,6 +24,8 @@ const getUserInput = function (e) {
 /* ====================================================================================
                                   fetch database data
                                   How to display ? - querySelector
+
+display results on page load   event listener - https://developer.mozilla.org/en-US/docs/Web/API/Window/load_event
 =====================================================================================*/
 
 const url = "http://localhost:3000";
@@ -35,6 +37,7 @@ async function getTasks() {
   console.log(payload);
   return payload;
 }
+//======================================================================================
 
 async function getSeinfeldQuote() {
   const response = await fetch("https://seinfeld-quotes.herokuapp.com/random");
